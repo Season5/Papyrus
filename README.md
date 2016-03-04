@@ -6,6 +6,9 @@ The App is gives us info about the various cohorts that have been in Moringa
 - Each cohort has its success and failure
 - A brief story of Moringa School journey
 
+# Technologies used
+- Android built by Android studio 
+
 
 # Team 
 [Elvis ](http://github.com/Elvisthacoder)<br>
