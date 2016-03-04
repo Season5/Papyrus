@@ -18,10 +18,10 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
         Button cohort4 = (Button)findViewById(R.id.cohort4);
         Button cohort5 = (Button)findViewById(R.id.cohort5);
         cohort1.setOnClickListener(this);
-        cohort1.setOnClickListener(this);
-        cohort1.setOnClickListener(this);
-        cohort1.setOnClickListener(this);
-        cohort1.setOnClickListener(this);
+        cohort2.setOnClickListener(this);
+        cohort3.setOnClickListener(this);
+        cohort4.setOnClickListener(this);
+        cohort5.setOnClickListener(this);
 
     }
 
