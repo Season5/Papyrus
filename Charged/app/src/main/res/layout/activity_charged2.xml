@@ -27,26 +27,54 @@
         android:id="@+id/button"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:background="#fff" />
 
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Password"
         android:id="@+id/button2"
+        android:layout_weight="1"
+        android:background="#fff"
         android:layout_below="@+id/button"
         android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button"
-        android:layout_weight="1"
-        android:layout_marginTop="-15dip"/>
+        android:layout_alignStart="@+id/button" />
 
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/button3"
+
+        android:background="#2ac61a"
+        android:paddingTop="-10dip"
         android:layout_below="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:layout_weight="1"
-        android:background="#2f9724" />
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignStart="@+id/button2"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Have an account?"
+        android:id="@+id/textView2"
+        android:layout_marginBottom="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_alignStart="@+id/button3"
+        android:layout_marginLeft="34dp"
+        android:layout_marginStart="34dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Log in"
+        android:id="@+id/textView3"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2"
+        android:textColor="#304ec7" />
 </RelativeLayout>
