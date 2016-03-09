@@ -1,15 +1,14 @@
 package com.example.taifa.projects;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+
+
+
+
 
 /**
  * An activity representing a single Project detail screen. This
@@ -17,29 +16,15 @@ import android.view.MenuItem;
  * item details are presented side-by-side with a list of items
  * in a {@link ProjectListActivity}.
  */
-public class ProjectDetailActivity extends AppCompatActivity {
+public class ProjectDetailActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         // Show the Up button in the action bar.
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
@@ -54,12 +39,11 @@ public class ProjectDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(ProjectDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(ProjectDetailFragment.ARG_ITEM_ID));
+            arguments.putParcelable("Project", getIntent().getParcelableExtra("Project"));
             ProjectDetailFragment fragment = new ProjectDetailFragment();
             fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.project_detail_container, fragment)
+            getFragmentManager().beginTransaction()
+                    .add(project_detail_container, fragment)
                     .commit();
         }
     }

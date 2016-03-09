@@ -13,24 +13,24 @@ import java.util.StringTokenizer;
  */
 public class DataModel {
 
-    private ArrayList<Projects> coursesArray = new ArrayList<Projects>();
+    private ArrayList<Projects> ProjectsArray = new ArrayList<Projects>();
     private Context ctx;
 
     private static  String TAG = "DataModel";
 
-    // Initializer to read a text file into an array of golfcourse objects
-    public DataModel(Context ctx, String coursesFilename) {
+    // Initializer to read a text file into an array of Projects objects
+    public DataModel(Context ctx, String ProjectsFilename) {
         String line;
         BufferedReader br;
 
         try {
-            br = new BufferedReader(new InputStreamReader(ctx.getAssets().open(coursesFilename)));
+            br = new BufferedReader(new InputStreamReader(ctx.getAssets().open(ProjectsFilename)));
 
             while ((line = br.readLine()) != null) {
                 StringTokenizer sTok = new StringTokenizer(line, ":");
                 Projects gc = new Projects(sTok.nextToken());
                 gc.address = sTok.nextToken();
-                coursesArray.add(gc);
+                ProjectsArray.add(gc);
             }
         } catch (IOException e) {
             return;
@@ -38,7 +38,10 @@ public class DataModel {
     }
 
 
-
+    // Method to retrieve Projects
+    public ArrayList<Projects> getProjects() {
+        return ProjectsArray;
+    }
 
 
 }

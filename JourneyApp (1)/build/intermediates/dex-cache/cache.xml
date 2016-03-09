@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/taifa/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.2.0/support-annotations-23.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c5bf571bb10462bd90e5419ade67793f71acbc87">
+        <dex dex="/home/taifa/AndroidStudioProjects/JourneyApp/app/build/intermediates/pre-dexed/debug/support-annotations-23.2.0_e6b6bb211edf5a9f56fa217889c87a278e588b45.jar" />
+    </item>
+    <item
+        jar="/home/taifa/AndroidStudioProjects/JourneyApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6e3578f92f7462d1a935a1d36173e3bdd1234976">
+        <dex dex="/home/taifa/AndroidStudioProjects/JourneyApp/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.2.0_1841d0ddafb19173dea0edbebc2c2830515d9b72.jar" />
+    </item>
+    <item
+        jar="/home/taifa/AndroidStudioProjects/JourneyApp/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="292a9fa091757208efa65e77eef63088247e51f3">
+        <dex dex="/home/taifa/AndroidStudioProjects/JourneyApp/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.2.0_e16c1b8e5414e3d1645b3da02a9505b29dc64a86.jar" />
+    </item>
+    <item
+        jar="/home/taifa/AndroidStudioProjects/JourneyApp/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8c108c22c99e794eff255bb34d2a461200c4cbb0">
+        <dex dex="/home/taifa/AndroidStudioProjects/JourneyApp/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.2.0_80653b2607cfb5de12f0c7517a006332a9031f93.jar" />
+    </item>
+    <item
+        jar="/home/taifa/AndroidStudioProjects/JourneyApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/jars/libs/internal_impl-23.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6e239441500605809818997dd63b62a947195f8c">
+        <dex dex="/home/taifa/AndroidStudioProjects/JourneyApp/app/build/intermediates/pre-dexed/debug/internal_impl-23.2.0_1ab11b9a5d95ba189344f711a8c38e240e6e9468.jar" />
+    </item>
+    <item
+        jar="/home/taifa/AndroidStudioProjects/JourneyApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e5f32fa48a3eb2de0c987025c11b6e3864b634d9">
+        <dex dex="/home/taifa/AndroidStudioProjects/JourneyApp/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.2.0_05d34dc63f71e77ef0fb29148fe1dff250619ad5.jar" />
+    </item>
+
+</items>

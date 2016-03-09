@@ -1,11 +1,17 @@
 package com.example.taifa.projects;
 
+import android.app.Activity;
+import android.app.Fragment;
+//import android.app.FragmentManager;
+import android.support.v4.app.FragmentManager;
+import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
@@ -16,8 +22,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+
 import com.example.taifa.projects.dummy.DummyContent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,7 +36,8 @@ import java.util.List;
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class ProjectListActivity extends AppCompatActivity {
+public class ProjectListActivity extends FragmentActivity
+        implements ProjectListFragment.Callbacks {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -36,107 +45,69 @@ public class ProjectListActivity extends AppCompatActivity {
      */
     private boolean mTwoPane;
 
+    private static  String TAG = "ProjectListActivity";
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Get golf courses from a file named courses.txt
+        DataModel dataModel = new DataModel(this, "Project");
+        ArrayList<Projects> projects = dataModel.getProjects();
+
+        FragmentManager fm = getSupportFragmentManager();
         setContentView(R.layout.activity_project_list);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(getTitle());
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        View recyclerView = findViewById(R.id.project_list);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
-
         if (findViewById(R.id.project_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
-            // If this view is present, then the
-            // activity should be in two-pane mode.
             mTwoPane = true;
+            // Its a tablet, so create a new detail fragment if one does not already exist
+            ProjectDetailFragment df = (ProjectDetailFragment) fm.findFragmentByTag("Detail");
+            if (df == null) {
+                // Initialize new detail fragment
+                df = new ProjectDetailFragment();
+                Bundle args = new Bundle();
+                args.putParcelable("course", new ProjectsDetail("Welcome to First Master/Detail"));
+                df.setArguments(args);
+                fm.beginTransaction().replace(R.id.project_detail_container, df, "Detail").commit();
+            }
+        }
+        // Initialize a new golfcourse list fragment, if one does not already exist
+        ProjectListFragment cf = (ProjectListFragment) fm.findFragmentByTag("List");
+        if ( cf == null) {
+            cf = new ProjectListFragment();
+            Bundle arguments = new Bundle();
+            arguments.putParcelableArrayList("Projects", dataModel.getProjects());
+            cf.setArguments(arguments);
+            fm.beginTransaction().replace(R.id.project_list, cf, "List").commit();
         }
     }
 
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
-    }
+    /**
+     * Callback method from {@link ProjectListFragment.Callbacks}
+     * indicating that the item with the given ID was selected.
+     */
+    @Override
+    public void onItemSelected(Projects c) {
+        if (mTwoPane) {
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+            Bundle arguments = new Bundle();
+            // Pass the selected Golfcourse object to the DetailFragment
+            arguments.putParcelable("course", c);
+            ProjectDetailFragment fragment = new ProjectDetailFragment();
+            fragment.setArguments(arguments);
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.project_detail_container, fragment)
+                    .commit();
 
-    public class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
-
-        private final List<DummyContent.DummyItem> mValues;
-
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
-            mValues = items;
-        }
-
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.project_list_content, parent, false);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
-
-            holder.mView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mTwoPane) {
-                        Bundle arguments = new Bundle();
-                        arguments.putString(ProjectDetailFragment.ARG_ITEM_ID, holder.mItem.id);
-                        ProjectDetailFragment fragment = new ProjectDetailFragment();
-                        fragment.setArguments(arguments);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.project_detail_container, fragment)
-                                .commit();
-                    } else {
-                        Context context = v.getContext();
-                        Intent intent = new Intent(context, ProjectDetailActivity.class);
-                        intent.putExtra(ProjectDetailFragment.ARG_ITEM_ID, holder.mItem.id);
-
-                        context.startActivity(intent);
-                    }
-                }
-            });
-        }
-
-        @Override
-        public int getItemCount() {
-            return mValues.size();
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            public final View mView;
-            public final TextView mIdView;
-            public final TextView mContentView;
-            public DummyContent.DummyItem mItem;
-
-            public ViewHolder(View view) {
-                super(view);
-                mView = view;
-                mIdView = (TextView) view.findViewById(R.id.id);
-                mContentView = (TextView) view.findViewById(R.id.content);
-            }
-
-            @Override
-            public String toString() {
-                return super.toString() + " '" + mContentView.getText() + "'";
-            }
+        } else {
+            // In single-pane mode, simply start the detail activity
+            // for the selected item ID.
+            Intent detailIntent = new Intent(this, ProjectDetailActivity.class);
+            // Pass the selected Golfcourse object to the DetailActivity
+            detailIntent.putExtra("course", c);
+            startActivity(detailIntent);
         }
     }
 }
