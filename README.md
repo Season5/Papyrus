@@ -6,6 +6,14 @@ App that organize your book prefernces at the tip of your hand
 - Choose book genre category
 - Pick on the read or unread books
 
+# Libraries Used
+- App Intro
+- Login
+- Sublime Navigation View
+- Foldable layout
+- Android flat button
+- Card View home
+
 # Technologies used
 - Android built by Android studio 
 
