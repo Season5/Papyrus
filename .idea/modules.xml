@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/JourneyApp.iml" filepath="$PROJECT_DIR$/JourneyApp.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/Papyrus.iml" filepath="$PROJECT_DIR$/Papyrus.iml" />
+>>>>>>> 9ea1dc5e3cbacaf9b3d5b4f84a071e0ed3290def
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
